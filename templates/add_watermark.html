@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أضف العلامة المائية</title>
+    <link rel="stylesheet" href="{% static 'style/watermark.css' %}">
+</head>
+<body>
+    
+    <form class="container" method="POST" enctype="multipart/form-data">
+
+        {% csrf_token %}
+        <h1 class="title"> أضف العلامة المائية الان !</h1>
+
+
+        <div class="in">
+            <p>النص</p>
+            <input type="text" name="text" >
+        </div>
+
+
+        <div class="btns">
+            <button type="button" class="img">أضف علي صورة</button>
+            <button type="button" class="video">أضف علي فيديو</button> 
+        </div>
+
+        <input type="file" id="File" hidden name="original">
+        <input type="text" id="fileType" hidden name="type">
+
+        <button class="submit" type="submit">انشاء</button>
+        
+    </form>
+
+
+    <script>
+
+        if ('{{msg}}'){
+            alert("{{msg}}")
+        }
+        var fileType = document.getElementById('fileType');
+        var btns = document.querySelectorAll('.btns button');
+        var file = document.getElementById('File');
+
+        btns.forEach(btn=>{
+            btn.addEventListener('click',function(){
+                fileType.value = btn.className;
+                file.click();
+            })
+        })
+
+    </script>
+</body>
+</html>

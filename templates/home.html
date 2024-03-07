@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الرئيسية</title>
+    <link rel="stylesheet" href="{% static 'style/home.css' %}">
+</head>
+<body>
+    
+    <div class="up">
+        <h1>{{c_user.full_name}}</h1>
+        <div class="btns">
+            <a href="{% url 'logout' %}" class="logout">تسجيل الخروج</a>
+            <a class="add" href="{% url 'watermark' %}">أضف العلامة المائية</a>
+        </div>
+    </div>
+
+
+    <div class="watermarks">
+
+        {% for file in files %}
+            <div class="file">
+                <p>{{file.name}}</p>
+                <a href="{{main_url}}/{{file.output}}" download="">تحميل</a>
+            </div>
+        {% endfor %}
+
+    </div>
+    
+</body>
+</html>

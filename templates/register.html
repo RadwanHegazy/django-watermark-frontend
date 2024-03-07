@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>انشاء حساب</title>
+    <link rel="stylesheet" href="{% static 'style/auth.css' %}">
+</head>
+<body>
+    
+    <form class="container" method="POST">
+        
+        {% csrf_token %}
+        
+        <h1 class="title">انشاء حساب</h1>
+
+        <div class="in">
+            <p>اسمك بالكامل</p>
+            <input type="text" name="full_name">
+        </div>
+
+        <div class="in">
+            <p>البريد الالكتروني</p>
+            <input type="email" name="email" >
+        </div>
+        
+        <div class="in">
+            <p>كلمة المرور</p>
+            <input type="password" name="password">
+        </div>
+
+        <div class="btns">
+            <a href="{% url 'login' %}"> لديك حساب بالفعل ؟</a>
+            
+            <button type="submit">انشاء حساب</button>
+        </div>
+
+
+    </form>
+
+    <script>
+        if("{{error}}"){
+            alert("{{error}}")
+        }
+    </script>
+</body>
+</html>
